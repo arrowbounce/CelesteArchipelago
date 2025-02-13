@@ -90,6 +90,7 @@ namespace Celeste.Mod.CelesteArchipelago
             new PatchedPlayer(),
             new PatchedStrawberry(),
             new PatchedBerryCounter(),
+            new PatchedBino(),
         };
 
         public ArchipelagoController(Game game) : base(game)

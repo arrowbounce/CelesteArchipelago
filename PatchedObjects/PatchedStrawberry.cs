@@ -28,7 +28,16 @@ namespace Celeste.Mod.CelesteArchipelago
         private static void ctor(On.Celeste.Strawberry.orig_ctor orig, Strawberry self, EntityData data, Microsoft.Xna.Framework.Vector2 offset, EntityID gid)
         {
             orig(self, data, offset, gid);
-            DynamicData.For(self).Set("isGhostBerry", ArchipelagoController.Instance.ProgressionSystem.IsCollectedVisually(SaveData.Instance.CurrentSession_Safe.Area, CollectableType.STRAWBERRY, self.ID));
+            bool isGhostBerry;
+
+            // IsCollectedVisually is the same for all berry types (red, golden and moon)
+            isGhostBerry = ArchipelagoController.Instance.ProgressionSystem.IsCollectedVisually(
+                SaveData.Instance.CurrentSession_Safe.Area, 
+                CollectableType.STRAWBERRY, 
+                self.ID
+            );
+            
+            DynamicData.For(self).Set("isGhostBerry", isGhostBerry);
         }
 
         private static void orig_OnCollect(orig_Strawberry_orig_OnCollect orig, Strawberry self)
@@ -54,8 +63,13 @@ namespace Celeste.Mod.CelesteArchipelago
                 {
                     Achievements.Register(Achievement.WOW);
                 }
-                // SaveData.Instance.AddStrawberry(self.ID, self.Golden);
-                ArchipelagoController.Instance.ProgressionSystem.OnCollectedClient(SaveData.Instance.CurrentSession_Safe.Area, CollectableType.STRAWBERRY, self.ID); // NEW
+                //SaveData.Instance.AddStrawberry(self.ID, self.Golden);
+
+                // BEGIN NEW
+                CollectableType berryType = self.Golden ? CollectableType.GOLDEN : CollectableType.STRAWBERRY; 
+                ArchipelagoController.Instance.ProgressionSystem.OnCollectedClient(SaveData.Instance.CurrentSession_Safe.Area, berryType, self.ID);
+                //END NEW
+                
                 Session session = (self.Scene as Level).Session;
                 session.DoNotLoad.Add(self.ID);
                 session.Strawberries.Add(self.ID);

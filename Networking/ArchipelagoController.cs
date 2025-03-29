@@ -227,15 +227,21 @@ namespace Celeste.Mod.CelesteArchipelago
             var goalLevel = ProgressionSystem.GetGoalLevel();
             bool isVictory = location.type == CollectableType.COMPLETION
                 && location.area == goalLevel.ID
-                && location.mode == (int)goalLevel.Mode;
+                && location.mode == (int)goalLevel.Mode
+                && VictoryCondition != VictoryConditionOptions.BERRIES_202;
+
 
             if (isVictory)
             {
-                Logger.Log("CelesteArchipelago", "Sending Victory Condition.");
-                var statusUpdatePacket = new StatusUpdatePacket();
-                statusUpdatePacket.Status = ArchipelagoClientState.ClientGoal;
-                Session.Socket.SendPacket(statusUpdatePacket);
+                SendVictory();
             }
+        }
+
+        public void SendVictory() {
+            Logger.Log("CelesteArchipelago", "Sending Victory Condition.");
+            var statusUpdatePacket = new StatusUpdatePacket();
+            statusUpdatePacket.Status = ArchipelagoClientState.ClientGoal;
+            Session.Socket.SendPacket(statusUpdatePacket);
         }
 
         public void ReplayClientCollected()

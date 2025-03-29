@@ -159,7 +159,7 @@ namespace Celeste.Mod.CelesteArchipelago
             if (start == Overworld.StartMode.AreaComplete || start == Overworld.StartMode.AreaQuit)
             {
                 AreaData areaData = AreaData.Get(SaveData.Instance.LastArea_Safe.ID);
-                areaData = AreaDataExt.Get(areaData?.GetMeta()?.Parent) ?? areaData;
+                areaData = AreaData.Get(areaData?.Meta?.Parent) ?? areaData;
                 if (areaData != null)
                 {
                     SaveData.Instance.LastArea_Safe.ID = areaData.ID;

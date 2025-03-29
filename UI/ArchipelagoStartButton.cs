@@ -131,9 +131,9 @@ namespace Celeste.Mod.CelesteArchipelago
         {
             Overworld overworld = entryOui.Overworld;
             AreaData area = AreaData.Areas[SaveData.Instance.LastArea_Safe.ID];
-            if (area.GetLevelSet() != "Celeste")
+            if (area.LevelSet != "Celeste")
             {
-                LevelSetStats levelSetStatsFor = SaveDataExt.GetLevelSetStatsFor(SaveData.Instance, "Celeste");
+                LevelSetStats levelSetStatsFor = SaveData.Instance.GetLevelSetStatsFor("Celeste");
                 levelSetStatsFor.UnlockedAreas = 1;
                 levelSetStatsFor.AreasIncludingCeleste[0].Modes[0].Completed = true;
             }
@@ -144,7 +144,7 @@ namespace Celeste.Mod.CelesteArchipelago
             overworld.Mountain.EaseCamera(0, area.MountainZoom, 1f, true, false);
             yield return 0.4f;
             area.Wipe(overworld, arg2: false, null);
-            RendererListExt.UpdateLists(overworld.RendererList);
+            overworld.RendererList.UpdateLists();
             overworld.RendererList.MoveToFront(overworld.Snow);
             yield return 0.5f;
             LevelEnter.Go(new Session(SaveData.Instance.LastArea_Safe), fromSaveData: false);

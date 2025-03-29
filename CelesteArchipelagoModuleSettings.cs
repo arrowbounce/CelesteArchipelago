@@ -18,7 +18,7 @@ namespace Celeste.Mod.CelesteArchipelago {
             set
             {
                 
-                if (ArchipelagoController.Instance.DeathLinkService is not null)
+                if (ArchipelagoController.Instance is not null && ArchipelagoController.Instance.DeathLinkService is not null)
                 {
                     if (!_deathLink) {
                         ArchipelagoController.Instance.DeathLinkService.EnableDeathLink();
@@ -36,6 +36,9 @@ namespace Celeste.Mod.CelesteArchipelago {
             get => _Chat; 
             set {
                 _Chat = value;
+                if (ArchipelagoController.Instance is null) {
+                    return;
+                }
                 if (value) {
                     ArchipelagoController.Instance.Init();
                 } else {

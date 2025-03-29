@@ -69,6 +69,7 @@ namespace Celeste.Mod.CelesteArchipelago
         CHAPTER_8_CORE_B = 4,
         CHAPTER_7_SUMMIT_C = 5,
         CHAPTER_8_CORE_C = 6,
+        BERRIES_202 = 99,
     }
 
     internal enum ProgressionSystemOptions

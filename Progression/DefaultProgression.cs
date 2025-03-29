@@ -69,6 +69,7 @@ namespace Celeste.Mod.CelesteArchipelago
                 case CollectableType.HEARTGEM:
                     return SaveData.Instance.Areas_Safe[area.ID].Modes[(int)area.Mode].HeartGem;
                 case CollectableType.STRAWBERRY:
+                case CollectableType.GOLDEN:
                     return entity != null && SaveData.Instance.Areas_Safe[area.ID].Modes[(int)area.Mode].Strawberries.Contains(entity.Value);
                 default:
                     throw new ArgumentOutOfRangeException($"CollectableType {collectable} not implemented.");
@@ -86,6 +87,7 @@ namespace Celeste.Mod.CelesteArchipelago
                 case CollectableType.HEARTGEM:
                     return HeartGems.IsFlagged(area);
                 case CollectableType.STRAWBERRY:
+                case CollectableType.GOLDEN:
                     return false;
                 default:
                     throw new ArgumentOutOfRangeException($"CollectableType {collectable} not implemented.");
@@ -108,6 +110,10 @@ namespace Celeste.Mod.CelesteArchipelago
                 case CollectableType.STRAWBERRY:
                     if (entity == null) return;
                     SaveData.Instance.AddStrawberry(area, entity.Value, false);
+                    break;
+                case CollectableType.GOLDEN:
+                    if (entity == null) return;
+                    SaveData.Instance.AddStrawberry(area, entity.Value, true);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException($"CollectableType {collectable} not implemented.");
@@ -133,6 +139,11 @@ namespace Celeste.Mod.CelesteArchipelago
                     break;
                 case CollectableType.STRAWBERRY:
                     StrawberryCount += 1;
+                    VictoryConditionOptions victoryCondition = (VictoryConditionOptions)SlotData.VictoryCondition;
+                    if (victoryCondition == VictoryConditionOptions.BERRIES_202 && StrawberryCount >= 202)
+                    {
+                        ArchipelagoController.Instance.SendVictory();
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException($"CollectableType {area} {collectable} {entity} not implemented.");
@@ -153,6 +164,7 @@ namespace Celeste.Mod.CelesteArchipelago
                 case CollectableType.HEARTGEM:
                     return SaveData.Instance.TotalHeartGems;
                 case CollectableType.STRAWBERRY:
+                case CollectableType.GOLDEN:
                     return SaveData.Instance.TotalStrawberries_Safe;
                 default:
                     throw new ArgumentOutOfRangeException($"CollectableType {collectable} not implemented.");
@@ -201,6 +213,7 @@ namespace Celeste.Mod.CelesteArchipelago
                 case VictoryConditionOptions.CHAPTER_8_CORE_C:
                     return new AreaKey(9, AreaMode.CSide);
                 case VictoryConditionOptions.CHAPTER_9_FAREWELL_A:
+                case VictoryConditionOptions.BERRIES_202:
                     return new AreaKey(10, AreaMode.Normal);
                 default:
                     throw new ArgumentOutOfRangeException($"Victory Condition {option} not implemented.");

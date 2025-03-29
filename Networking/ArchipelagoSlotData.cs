@@ -60,7 +60,7 @@ namespace Celeste.Mod.CelesteArchipelago
         }
     }
 
-    internal enum VictoryConditionOptions
+    public enum VictoryConditionOptions
     {
         CHAPTER_7_SUMMIT_A = 0,
         CHAPTER_8_CORE_A = 1,

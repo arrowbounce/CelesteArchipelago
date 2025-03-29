@@ -1,13 +1,13 @@
 ﻿using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Celeste.Mod.CelesteArchipelago
 {
     public class CheckpointState
     {
         private ulong runningTotal;
+        public string? LastHitCheckpoint;
 
         private struct CheckpointItem
         {
@@ -63,6 +63,14 @@ namespace Celeste.Mod.CelesteArchipelago
             helper[Scope.Slot, "CelesteCheckpointState"] = unchecked((long)runningTotal + long.MinValue);
         }
 
+        public void UnMarkCheckpoint(AreaKey area, string level)
+        {
+            var idx = FindCheckpoint(area, level);
+            if (idx == -1) return;
+            runningTotal &= ~((ulong)1 << idx);
+            helper[Scope.Slot, "CelesteCheckpointState"] = unchecked((long)runningTotal + long.MinValue);
+        }
+
         public void ApplyCheckpoints()
         {
             ulong copy = runningTotal;
@@ -76,6 +84,33 @@ namespace Celeste.Mod.CelesteArchipelago
                 copy /= 2;
                 idx++;
             }
+        }
+
+        public void RemoveAreaCheckpoints(AreaKey area)
+        {
+            // ApSave
+            HashSet<string> checkpoints = SaveData.Instance.Areas_Safe[area.ID].Modes[(int)area.Mode].Checkpoints;
+            foreach (string level in checkpoints)
+            {
+                UnMarkCheckpoint(area, level);
+            }
+
+            // Local / SaveData
+            SaveData.Instance.Areas[area.ID].CleanCheckpoints();
+        }
+
+        public void CleanSaveDataCheckpoints()
+        {
+            for (int area = 0; area < AreaData.Areas.Count; area++)
+            {
+                for (int mode = 0; mode < AreaData.Areas[area].Mode.Length; mode++)
+                {
+                    if (SaveData.Instance is not null)
+                    {
+                        SaveData.Instance.Areas[area].CleanCheckpoints();
+                    }
+                }
+            } 
         }
     }
 }

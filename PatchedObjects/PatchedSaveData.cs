@@ -76,6 +76,5 @@
             ArchipelagoController.Instance.CheckpointState.MarkCheckpoint(area, level);
             return orig(self, area, level);
         }
-
     }
 }

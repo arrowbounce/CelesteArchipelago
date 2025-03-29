@@ -1,4 +1,5 @@
 ﻿using System;
+using FMOD.Studio;
 
 namespace Celeste.Mod.CelesteArchipelago {
     public class CelesteArchipelagoModule : EverestModule {
@@ -39,5 +40,10 @@ namespace Celeste.Mod.CelesteArchipelago {
             Everest.Events.MainMenu.OnCreateButtons -= ArchipelagoUI.ReplaceClimbButton;
         }
 
+        public override void CreateModMenuSection(TextMenu menu, bool inGame, EventInstance snapshot)
+        {
+            base.CreateModMenuSection(menu, inGame, snapshot);
+            CelesteArchipelagoSettingsUI.CreateMenu(menu);
+        }
     }
 }

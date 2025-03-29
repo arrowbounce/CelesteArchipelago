@@ -12,3 +12,171 @@ archipelago_menu_regenuuid_yes=
 
 archipelago_menu_regenuuid_no=
 	Cancel
+
+archipelago_settings_name_label=
+	Name
+
+archipelago_settings_password_label=
+	Password
+
+archipelago_settings_server_label=
+	Server
+
+archipelago_settings_port_label=
+	Port
+
+archipelago_settings_chat_label=
+	Chat
+
+archipelago_settings_deathlink_label=
+	DeathLink
+
+archipelago_settings_deathlink_mode_label_title=
+	DeathLink Mode
+
+archipelago_settings_deathlink_mode_label_room=
+	Room
+
+archipelago_settings_deathlink_mode_label_subchapter=
+	SubChapter
+
+archipelago_settings_deathlink_mode_label_chapter=
+	Chapter
+
+archipelago_settings_deathlink_mode_label_chapternogoal=
+	ChapterNoGoal
+
+archipelago_settings_deathlink_mode_description_room=
+	Room: Normal Death
+
+archipelago_settings_deathlink_mode_description_subchapter=
+	SubChapter: Restarts to the most recently collected sub-chapter
+
+archipelago_settings_deathlink_mode_description_chapter=
+	Chapter: Restarts the whole chapter
+
+archipelago_settings_deathlink_mode_description_chapternogoal=
+	ChapterNoGoal: Chapter mode until goal level, then switches to Room mode
+
+archipelago_settings_chat_toggle_label=
+	Toggle Chat
+
+archipelago_settings_chat_scroll_up_label=
+	Scroll Chat Up
+
+archipelago_settings_chat_scroll_down_label=
+	Scroll Chat Down
+
+archipelago_messages_deathlink_sent=
+	Deathlink Sent
+
+archipelago_messages_deathlink_recieved=
+	DeathLink from
+
+archipelago_messages_deathlink_default=
+	player died in Celeste
+
+archipelago_messages_deathlink_intro_1=
+	Granny Laughs at player
+
+archipelago_messages_deathlink_intro_2=
+	player was done in by the driveway
+
+archipelago_messages_deathlink_intro_3=
+	player tried to dash
+
+archipelago_messages_deathlink_forsaken_city_1=
+	player died in the Forsaken City
+
+archipelago_messages_deathlink_forsaken_city_2=
+	player forgot their equipment
+
+archipelago_messages_deathlink_old_site_1=
+	player kept dreaming
+
+archipelago_messages_deathlink_old_site_2=
+	player was caught by Badeline
+
+archipelago_messages_deathlink_celestial_resort_1=
+	player couldn't handle the dust bunnies
+
+archipelago_messages_deathlink_celestial_resort_2=
+	player let Badeline talk to Mr. Oshiro
+
+archipelago_messages_deathlink_celestial_resort_3=
+	player couldn't get over their fear of ghosts
+
+archipelago_messages_deathlink_celestial_resort_4=
+	player stopped cleaning
+
+archipelago_messages_deathlink_golden_ridge_1=
+	player was taken away by the wind
+
+archipelago_messages_deathlink_golden_ridge_2=
+	player was blown away...
+
+archipelago_messages_deathlink_golden_ridge_3=
+	player tried to catch a snowball
+
+archipelago_messages_deathlink_golden_ridge_4=
+	player tried to jump on a cloud
+
+archipelago_messages_deathlink_mirror_temple_1=
+	player got lost in the temple
+
+archipelago_messages_deathlink_mirror_temple_2=
+	player became food for the seekers
+
+archipelago_messages_deathlink_reflection_1=
+	player tried to get rid of a part of themselves
+
+archipelago_messages_deathlink_reflection_2=
+	player's feather broke
+
+archipelago_messages_deathlink_reflection_3=
+	player was overwhelmed with emotion
+
+archipelago_messages_deathlink_reflection_4=
+	player doesn't know that a kilogram of feathers and a kilogram of steel are the same weight
+
+archipelago_messages_deathlink_summit_1=
+	player fell on the climb
+
+archipelago_messages_deathlink_summit_2=
+	player could not reach the summit
+
+archipelago_messages_deathlink_summit_3=
+	player forgot about their second dash
+
+archipelago_messages_deathlink_epilogue_1=
+	player's strawberry cake was a lie
+
+archipelago_messages_deathlink_epilogue_2=
+	player reached the end?
+
+archipelago_messages_deathlink_core_1=
+	player didn't know whether they were hot or cold
+
+archipelago_messages_deathlink_core_2=
+	player was told the lava was orange juice
+
+archipelago_messages_deathlink_core_3=
+	player's dash got eaten
+
+archipelago_messages_deathlink_farewell_1=
+	player says Farewell
+
+archipelago_messages_deathlink_random_1=
+	player thinks the old lady was right
+
+archipelago_messages_deathlink_random_2=
+	player swears they can do this deathless
+
+archipelago_messages_deathlink_random_3=
+	player has a skill issue
+
+archipelago_messages_deathlink_random_4=
+	player couldn't handle the mountain
+
+archipelago_messages_deathlink_random_5=
+	player tried to copy Parrot Dash

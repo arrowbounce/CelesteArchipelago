@@ -1,9 +1,7 @@
-using System;
 using Microsoft.Xna.Framework;
 
 namespace Celeste.Mod.CelesteArchipelago
 {
-
     public class PatchedPlayer : IPatchable
     {
         public void Load()
@@ -22,26 +20,31 @@ namespace Celeste.Mod.CelesteArchipelago
 
         private static void Update(On.Celeste.Player.orig_Update orig, Player self)
         {
-            if (ArchipelagoController.Instance.DeathLinkStatus == DeathLinkStatus.Pending)
+            if (ArchipelagoController.Instance.DeathLinkPool.Count > 0
+            && self.InControl
+            && !self.SceneAs<Level>().InCutscene
+            && !self.SceneAs<Level>().InCredits
+            )
             {
+                ArchipelagoController.Instance.FlushDeathLinkMessage();
                 self.Die(Vector2.Zero, true);
             }
-            orig.Invoke(self);
+            orig(self);
         }
 
-        private static void OnSpawn(Player player)
+        private static void OnSpawn(Player self)
         {
-            if (ArchipelagoController.Instance.DeathLinkStatus == DeathLinkStatus.Dying)
+            DeathAmnestyUI entity = self.SceneAs<Level>().Tracker.GetEntity<DeathAmnestyUI>();
+            if (entity != null)
             {
-                ArchipelagoController.Instance.DeathLinkStatus = DeathLinkStatus.None;
+                entity.UpdateDisplayText();
             }
         }
 
-        private static void OnDie(Player player)
+        private static void OnDie(Player self)
         {
             ArchipelagoController.Instance.SendDeathLinkCallback();
-            ArchipelagoController.Instance.DeathLinkStatus = DeathLinkStatus.Dying;
-            ArchipelagoController.Instance.isLocalDeath = true;
+            ArchipelagoController.Instance.IsLocalDeath = ArchipelagoController.Instance.DeathLinkPool.Count < 1;
         }
     }
 }
